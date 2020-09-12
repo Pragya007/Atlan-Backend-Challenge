@@ -19,16 +19,16 @@ Once the query is fired after clicking the submit button, at the bottom status i
 
 ### Screenshots
 First Page
-<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Front%20Page.PNG" width="400" height="400">
+<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Front%20Page.PNG" >
 
 Submit
-<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Submit.PNG" width="300" height="400">
+<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Submit.PNG">
 
 Pause/Resume
-<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Pause_Resume.PNG" width="300" height="400">
+<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Pause_Resume.PNG" >
 
 Cancel
-<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Cancel.PNG" width="300" height="400">
+<img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/Cancel.PNG">
 
 Database
 <img src="https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/DB1.PNG" width="400" height="400">
