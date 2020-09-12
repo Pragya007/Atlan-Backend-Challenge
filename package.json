@@ -1,0 +1,28 @@
+{
+  "name": "atlan-backend-challenge",
+  "version": "1.0.0",
+  "description": "Designed simple solution which will solve three problems: Pausing, Resuming and Cancelling a request",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pragya007/Atlan-Backend-Challenge.git"
+  },
+  "author": "Pragya007",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pragya007/Atlan-Backend-Challenge/issues"
+  },
+  "homepage": "https://github.com/Pragya007/Atlan-Backend-Challenge#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "child_process": "^1.0.2",
+    "express": "^4.17.1",
+    "joi": "^17.2.1",
+    "mysql": "^2.18.1",
+    "worker-thread": "^1.1.0"
+  }
+}
