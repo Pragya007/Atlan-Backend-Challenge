@@ -12,7 +12,7 @@ I have taken a dummy database having 100000 rows in the table 'user_details'[Sch
 Once the query is fired after clicking the submit button, at the bottom status is shown and in console every step is being shown, one can pause and resume that query and for this purpose sleep is added in the query to test these pause/resume functions. One can also terminate that query.
 
 ## Technology Stack
-* Node js
+* Node.js
 * HTML
 * MySQL
 * Docker
@@ -41,3 +41,7 @@ Database
 
 
 ## Installation
+
+
+Dummy Database: https://sample-videos.com/download-sample-sql.php
+
