@@ -37,7 +37,7 @@ function initialiseConnection() {
 let connection = initialiseConnection();
 
 
-function getDataForDateRange(original, newVal) {
+function queryExec(original, newVal) {
     connection.beginTransaction(function (err) {
         console.log('Transaction is begining...')
         console.log('Transaction Thread ID: ', worker.threadId);
@@ -73,5 +73,5 @@ const original = worker.workerData.original;
 const newVal = worker.workerData.newVal;
 
 console.log('Thread ID: ', worker.threadId);
-getDataForDateRange(original, newVal);
+queryExec(original, newVal);
 
