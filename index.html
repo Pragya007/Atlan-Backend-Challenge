@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <h2 style="text-align: center; color:#005086">Updating User Details Table</h2>
+  <h6 style="text-align: center;">The database is having a table containing 100000 rows. The schema of user details
+    table
+    is given below. Query which will triger on clicking of submit button is to update the gender column
+    having value equal to 'Original Value' to the 'Update Value'. Three more buttons are given to pause,
+    resume and cancel the request and each of button will hit respective end-points.
+  </h6>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <div style="text-align: center;">
+
+    <i>[Schema of Table:
+      user_id,
+      username,
+      first_name,
+      last_name,
+      gender,
+      password,
+      status]</i><br>
+    <form>
+      Original Value:<br>
+      <input type="text" name="original" id="original" class="text-input">
+      <br><br>
+
+      Update Value:<br>
+      <input type="text" name="newVal" id="newVal" class="text-input">
+
+      <br><br>
+
+      <input id="submit_btn" class="btn btn-primary" type="submit" value="Submit" onsubmit="getDataRequest()">
+
+    </form>
+  </div>
+  <div style="text-align: center;">
+
+
+
+    <br>
+    <button id="pause_btn" class="btn btn-primary" type="button" value="Pause Request" onclick="pauseRequest()">Pause
+      Request</button>
+    <br><br>
+    <button id="resume_btn" class="btn btn-primary" type="button" value="Resume Request" disabled="true"
+      onclick="resumeRequest()">Resume
+      Request</button>
+    <br><br>
+    <button id="cancel_btn" class="btn btn-primary" type="button" value="Cancel Request" disabled="true"
+      onclick="cancelRequest()">Cancel
+      Request</button>
+    <br><br>
+
+    <div class="alert alert-primary" id="progressouter" style="align-items: center;">
+
+
+      Status:
+      <p id="status-text" class="alert alert-primary"></p>
+      <p id="message" class="alert alert-primary"></p>
+    </div>
+    <script>
+
+
+      // Pausing data request
+      function pauseRequest() {
+        $('#pause_btn').prop('disabled', true);
+        $('#resume_btn').prop('disabled', false);
+        $('#cancel_btn').prop('disabled', false);
+
+        var dataString = "pauseRequest=true";
+        $.ajax({
+          type: "POST",
+          url: "/pauseRequest",
+          data: dataString,
+          success: function () {
+            console.log('Sucessfully sent pause request');
+            $('#status-text').prop('innerHTML', "Sucessfully sent pause request");
+            $('#message').prop('innerHTML', "Data Request Paused");
+          }
+        });
+      }
+
+
+      // Resume data request
+      function resumeRequest() {
+        $('#pause_btn').prop('disabled', false);
+        $('#resume_btn').prop('disabled', true);
+        $('#cancel_btn').prop('disabled', false);
+
+        var dataString = "resumeRequest=true";
+
+        $.ajax({
+          type: "POST",
+          url: "/resumeRequest",
+          data: dataString,
+          success: function () {
+
+            console.log('Sucessfully sent resume request');
+            $('#status-text').prop('innerHTML', "Sucessfully sent resume request");
+            $('#message').prop('innerHTML', "Resumed Data Request");
+          }
+        });
+      }
+
+      // Cancel data request
+      function cancelRequest() {
+        $('#pause_btn').prop('disabled', true);
+        $('#resume_btn').prop('disabled', true);
+        $('#cancel_btn').prop('disabled', false);
+
+        var dataString = "cancelRequest=true";
+
+        $.ajax({
+          type: "POST",
+          url: "/cancelRequest",
+          data: dataString,
+          success: function () {
+            console.log('Sucessfully sent cancel request');
+            $('#status-text').prop('innerHTML', "Sucessfully sent cancel request");
+            $('#message').prop('innerHTML', "Data Request Cancelled");
+          }
+        });
+      }
+
+      // Getting data from database request
+      function getDataRequest() {
+        $('#pause_btn').prop('disabled', false);
+        $('#resume_btn').prop('disabled', false);
+        $('#cancel_btn').prop('disabled', false);
+      }
+
+      $(function () {
+
+        // resetting all the pause, cancel and resume buttons
+        $('#pause_btn').prop('disabled', false);
+        $('#resume_btn').prop('disabled', false);
+        $('#cancel_btn').prop('disabled', false);
+
+        // form validation
+        $("#submit_btn").click(function () {
+          console.log('Submission done')
+          // validate and process form here
+          $('.error').hide();
+
+          var original = $("input#original").val();
+          if (original == "") {
+            $("input#original").focus();
+            return false;
+          }
+          var newVal = $("input#newVal").val();
+          console.log(original);
+          console.log(newVal);
+          if (newVal == "") {
+            $("input#newVal").focus();
+            return false;
+          }
+          $('#pause_btn').prop('disabled', false);
+          $('#resume_btn').prop('disabled', false);
+          $('#cancel_btn').prop('disabled', false);
+          // Now that form validation is done, we can send the POST request.
+          var dataString = '&original=' + original + '&newVal=' + newVal;
+          $.ajax({
+            type: "POST",
+            url: "/getData",
+            data: dataString,
+            success: function () {
+              $('#status-text').prop('innerHTML', "Form Submitted!");
+              $('#message').prop('innerHTML', "Transaction will start in db");
+            }
+          });
+          return false;
+        });
+      });
+    </script>
+</body>
+
+</html>
