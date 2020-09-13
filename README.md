@@ -41,7 +41,17 @@ Database
 
 
 ## Installation
+* Import MySql DataBase
+* For server(Inside Atlan-Backend-Challenge Folder): 
+    ```sh
+    $ npm install
+    $ npm start
+    ```
+ * Open ``localhost:3000``
+ * Docker Files are also given:
+    ```
+    docker-compose up --build
+    ```
 
 
 Dummy Database: https://sample-videos.com/download-sample-sql.php
-
