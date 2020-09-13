@@ -5,14 +5,21 @@ const mysql = require('mysql');
 const { Worker, isMainThread } = require('worker_threads');
 
 const app = express();
+var mysqlHost = process.env.MYSQL_HOST || 'localhost';
+   var mysqlPort = process.env.MYSQL_PORT || '3000';
+   var mysqlUser = process.env.MYSQL_USER || 'root';
+   var mysqlPass = process.env.MYSQL_PASS || '';
+   var mysqlDB   = process.env.MYSQL_DB   || 'samplevideo_db';
 
+   
 // Database connection
 function initialiseConnection() {
     return mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'samplevideo_db',
+        host: mysqlHost,
+        user: mysqlUser,
+        password: mysqlPass,
+        database: mysqlDB,
+        port: mysqlPort,
         multipleStatements: true
 
     });

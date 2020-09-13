@@ -1,28 +1,24 @@
 version: '3'
 
 services:
-  Database:
-    image: mysql:5.6
-    container_name: mysql-db-container
-    restart: always
-    environment:
-      MYSQL_HOST: localhost
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: 
-      MYSQL_DATABASE: samplevideo_db
-    ports: 
-      - "80:3300"
-    volumes: 
-      - ./Database/samplevideo_db.sql:/docker-entrypoint-initDatabase.d/samplevideo_db.sql
-
-  atlan-app:
+  app:
+    container_name: docker-node-mysql1
     build: .
+    ports:
+      - "8080:3000"
+    links:
+      - mysql-dev
+    depends_on:
+      - mysql-dev
     restart: always
-    container_name: atlan-app-container
-    ports: 
-      - 9000:3000
-    links: 
-      - Database:Database
-    depends_on: 
-      - Database
-    
+    command: npm start
+
+
+  mysql-dev:
+    container_name: mysql-container1
+    image: mysql:8.0.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: samplevideo_db
+    ports:
+      - "3306:3306"
