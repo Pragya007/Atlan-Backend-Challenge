@@ -1,5 +1,4 @@
-# Atlan-Backend-Challenge
-[![N|Solid](https://github.com/Pragya007/Atlan-Backend-Challenge/blob/master/Screenshots/atlan-squarelogo.png)]()
+# Request-Handling-Application
 
 Rest API solving given problem stated in Atlan backend intership task.
 
